@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      // Handy: eigenes Touch-Layout (Klasse phone, siehe Ende von styles.css und src/phoneui.js).
+      // Echte Gerätebreite, Vollbild bis in die Ecken (viewport-fit=cover), Zoomen aus.
+      // Zum Testen am PC mit ?phone in der Adresse erzwingen.
+      (function () {
+        var q = /[?&]phone(=|&|$)/.test(location.search);
+        var coarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+        if (q || (coarse && Math.min(screen.width, screen.height) < 700)) {
+          var h = document.documentElement;
+          h.classList.add('phone');
+          if (navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)) h.classList.add('standalone');
+          document.querySelector('meta[name=viewport]').content =
+            'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
+        }
+      })();
+    </script>
+    <title>Welpen-Café</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+    <meta name="theme-color" content="#f3e9dc" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Welpen-Café" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>#boot{display:none}html.phone #boot{z-index:10000;color:#5a3e2b;background:radial-gradient(at 50% 40%,#fbf5ec,#ead9c3);flex-direction:column;justify-content:center;align-items:center;gap:6px;font:800 22px Nunito,system-ui,sans-serif;transition:opacity .35s;display:flex;position:fixed;inset:0}html.phone #boot.gone{opacity:0;pointer-events:none}html.phone .boot-dog{font-size:64px;animation:.9s ease-in-out infinite bootHop}html.phone .boot-paws{gap:10px;font-size:16px;display:flex}html.phone .boot-paws span{opacity:.15;animation:1.2s ease-in-out infinite bootPaw}html.phone .boot-paws span:nth-child(2){animation-delay:.2s}html.phone .boot-paws span:nth-child(3){animation-delay:.4s}@keyframes bootHop{0%,to{transform:translateY(0)rotate(-4deg)}50%{transform:translateY(-12px)rotate(4deg)}}@keyframes bootPaw{40%,60%{opacity:.9}}</style>
+    <script type="module" crossorigin src="./assets/index-BaJ3KJL3.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BtXCBvf7.css">
+  </head>
+  <body>
+    <div id="scene"></div>
+    <div id="ui"></div>
+    <div id="boot" aria-hidden="true"><div class="boot-dog">🐶</div><div>Welpen-Café</div><div class="boot-paws"><span>🐾</span><span>🐾</span><span>🐾</span></div></div>
+    <div id="rotate"><div class="rot-card"><div class="rot-ico"><div class="rot-phone"><span>🐶</span></div></div><b>Bitte quer halten</b><span>Das Welpen-Café spielt sich im Querformat.</span></div></div>
+  </body>
+</html>
